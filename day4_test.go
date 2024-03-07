@@ -12,6 +12,6 @@ func TestDay4(t *testing.T) {
 }
 
 func TestDay4_2(t *testing.T) {
-	result := day4_2("inputs/day4_test.txt")
+	result := day4_2("inputs/day4.txt")
 	assert.Equal(t, 30, result)
 }
