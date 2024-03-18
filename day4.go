@@ -1,25 +1,15 @@
 package main
 
 import (
-	"bufio"
-	"fmt"
-	"os"
 	"regexp"
 	"strconv"
 	"strings"
 )
 
 func day4(input string) int {
-	f, err := os.Open(input)
-	if err != nil {
-		panic(err)
-	}
-	defer f.Close()
-	scanner := bufio.NewScanner(f)
 	numbersRegex := regexp.MustCompile("(\\d+)")
 	total := 0
-	for scanner.Scan() {
-		line := scanner.Text()
+	fromInput(input, func(line string) {
 		data := strings.Split(line, ":")
 		cardNumbers := strings.Split(data[1], "|")
 		winnings := prepareNumbers(cardNumbers[0], numbersRegex)
@@ -36,7 +26,7 @@ func day4(input string) int {
 		}
 
 		total += subTotal
-	}
+	})
 
 	return total
 }
@@ -61,18 +51,11 @@ func prepareNumbers(numbers string, reg *regexp.Regexp) []string {
 }
 
 func day4_2(input string) int {
-	f, err := os.Open(input)
-	if err != nil {
-		panic(err)
-	}
-	defer f.Close()
-	scanner := bufio.NewScanner(f)
 	total := 0
 	numbersRegex := regexp.MustCompile("(\\d+)")
 	cards := map[int]int{}
 	reg := regexp.MustCompile("^Card +(\\d+)$")
-	for scanner.Scan() {
-		line := scanner.Text()
+	fromInput(input, func(line string) {
 		data := strings.Split(line, ":")
 		cardNumber, _ := strconv.Atoi(reg.FindStringSubmatch(data[0])[1])
 		cardNumbers := strings.Split(data[1], "|")
@@ -90,10 +73,9 @@ func day4_2(input string) int {
 			fv, _ := cards[i]
 			cards[i] = fv + cards[cardNumber]
 		}
-	}
+	})
 
-	for k, v := range cards {
-		fmt.Println(k, v)
+	for _, v := range cards {
 		total += v
 	}
 

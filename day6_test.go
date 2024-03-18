@@ -6,14 +6,14 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func TestDay5(t *testing.T) {
-	result := day5("inputs/day5.txt")
-	assert.Equal(t, 111627841, result)
+func TestDay6(t *testing.T) {
+	result := day6("inputs/day6.txt")
+	assert.Equal(t, 6209190, result)
 }
 
 // this test timeout due to around 2 minutes to run this bruteforce method, there is probably
 // a smarter solution but i don't know which one
-func TestDay5_2(t *testing.T) {
-	result := day5_2("inputs/day5.txt")
-	assert.Equal(t, 69323688, result)
+func TestDay6_2(t *testing.T) {
+	result := day6_2("inputs/day6_2.txt")
+	assert.Equal(t, 28545089, result)
 }

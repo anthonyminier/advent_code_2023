@@ -1,24 +1,16 @@
 package main
 
 import (
-	"bufio"
-	"os"
 	"regexp"
 	"strconv"
 	"strings"
 )
 
-func day2() int {
-	f, err := os.Open("inputs/day2.txt")
-	if err != nil {
-		panic(err)
-	}
-	defer f.Close()
-	scanner := bufio.NewScanner(f)
+func day2(input string) int {
 	total := 0
 	reg := regexp.MustCompile("(\\d+) (\\w+)")
-	for scanner.Scan() {
-		line := scanner.Text()
+
+	fromInput(input, func(line string) {
 		// get game and data
 		gameParts := strings.Split(line, ":")
 		gameNumber, err := strconv.Atoi(strings.Replace(gameParts[0], "Game ", "", 1))
@@ -57,22 +49,16 @@ func day2() int {
 		if !impossible {
 			total += gameNumber
 		}
-	}
+	})
 
 	return total
 }
 
-func day2_2() int {
-	f, err := os.Open("inputs/day2.txt")
-	if err != nil {
-		panic(err)
-	}
-	defer f.Close()
-	scanner := bufio.NewScanner(f)
+func day2_2(input string) int {
 	total := 0
 	reg := regexp.MustCompile("(\\d+) (\\w+)")
-	for scanner.Scan() {
-		line := scanner.Text()
+
+	fromInput(input, func(line string) {
 		// get game and data
 		gameParts := strings.Split(line, ":")
 		_, err := strconv.Atoi(strings.Replace(gameParts[0], "Game ", "", 1))
@@ -106,7 +92,7 @@ func day2_2() int {
 		}
 		gameResult := maxRed * maxBlue * maxGreen
 		total += gameResult
-	}
+	})
 
 	return total
 }

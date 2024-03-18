@@ -1,10 +1,8 @@
 package main
 
 import (
-	"bufio"
 	"cmp"
 	"fmt"
-	"os"
 	"regexp"
 	"strconv"
 	"strings"
@@ -13,17 +11,10 @@ import (
 var regDigit = regexp.MustCompile("^\\d$")
 
 func day3(input string) int {
-	f, err := os.Open(input)
-	if err != nil {
-		panic(err)
-	}
-	defer f.Close()
-	scanner := bufio.NewScanner(f)
 	board := [][]string{}
-	for scanner.Scan() {
-		line := scanner.Text()
+	fromInput(input, func(line string) {
 		board = append(board, strings.Split(line, ""))
-	}
+	})
 	total := 0
 	for j := range len(board) {
 		for i := 0; i < len(board[j]); i++ {
@@ -67,17 +58,11 @@ func isNotADot(board [][]string, j, i, jlength, ilength int) bool {
 }
 
 func day3_2(input string) int {
-	f, err := os.Open(input)
-	if err != nil {
-		panic(err)
-	}
-	defer f.Close()
 	board := [][]string{}
-	scanner := bufio.NewScanner(f)
-	for scanner.Scan() {
-		line := scanner.Text()
+
+	fromInput(input, func(line string) {
 		board = append(board, strings.Split(line, ""))
-	}
+	})
 	total := 0
 	numberCoordinates := map[string]string{}
 	starCoordinates := []string{}

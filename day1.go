@@ -7,10 +7,10 @@ import (
 	"strings"
 )
 
-func day1() int {
+func day1(input string) int {
 	total := 0
 	reg := regexp.MustCompile(`(\d)`)
-	fromInput("inputs/day1.txt", func(line string) {
+	fromInput(input, func(line string) {
 		digits := reg.FindAllStringSubmatch(line, -1)
 		first := digits[0][0]
 		last := digits[len(digits)-1][0]
@@ -36,9 +36,9 @@ var numberMapping = map[string]int{
 }
 var neededs = []string{"one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "1", "2", "3", "4", "5", "6", "7", "8", "9"}
 
-func day1_2() int {
+func day1_2(input string) int {
 	total := 0
-	fromInput("inputs/day1.txt", func(line string) {
+	fromInput(input, func(line string) {
 		first := ""
 		lowerIndex := len(line)
 		greaterIndex := 0

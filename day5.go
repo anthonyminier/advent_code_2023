@@ -11,13 +11,13 @@ type data struct {
 	nrange      int
 }
 
-func day5() int {
+func day5(input string) int {
 	minimum := 1000000000000
 	seedMap := [7][]data{}
 	currentIndex := -1
 	seeds := []int{}
 	// format the data
-	fromInput("inputs/day5.txt", func(line string) {
+	fromInput(input, func(line string) {
 		if line == "" {
 			return
 		}
@@ -68,12 +68,12 @@ type seed struct {
 
 // this solution (brute force one) take around 2 minutes to find the solution, not really optimized
 // but i keep it and maybe later, i will try to find a better solution
-func day5_2() int {
+func day5_2(input string) int {
 	minimum := 1000000000000
 	seedMap := [7][]data{}
 	currentIndex := -1
 	seeds := []seed{}
-	fromInput("inputs/day5.txt", func(line string) {
+	fromInput(input, func(line string) {
 		if line == "" {
 			return
 		}
